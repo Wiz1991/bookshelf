@@ -1,0 +1,30 @@
+<main class="page-container">
+  <h1 class="page-title">Catalog</h1>
+  <section class="catalog">
+    <div class="filters-container"></div>
+    <div class="books-list">
+      <div class="card" *ngFor="let book of books$ | async">
+        <div class="book-header">
+          <div class="meta">
+            <span class="date">{{ book.datePublished }}</span>
+            <span class="pages">{{ book.pages }} Pages</span>
+          </div>
+          <h3 class="title">{{ book.title }}</h3>
+          <div class="info">
+            <span class="genre">Genre: {{ book.genre }}</span>
+            <span class="dot">&#x2022;</span>
+            <span class="publisher">Publisher: {{ book.publisher }}</span>
+            <span class="rating">{{ getAverageRating(book.ratings) }} ★</span>
+          </div>
+        </div>
+        <div class="footer">
+          <span class="price">${{ book.price }}</span>
+          <div class="actions">
+            <button class="rate" type="button">Rate</button>
+            <button class="reserve" type="button">Reserve</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

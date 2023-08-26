@@ -1,0 +1,91 @@
+.page-container {
+  padding: 2rem;
+}
+
+.page-title {
+  margin: 2rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.books-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--foreground);
+  gap: 2rem;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+}
+.dot {
+  font-size: 1.5rem;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.rating {
+  margin-left: auto;
+}
+
+.meta {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .price {
+    color: #5d5c5c;
+    font-weight: 700;
+  }
+
+  .rate {
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.2rem;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in;
+  }
+
+  .rate:hover {
+    border: 2px solid var(--primary-color);
+  }
+
+  .reserve {
+    padding: 0.3rem 0.6rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 0.2rem;
+  }
+  .reserve:hover {
+    opacity: 0.8;
+  }
+}
