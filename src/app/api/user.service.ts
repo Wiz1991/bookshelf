@@ -24,7 +24,6 @@ export class UserService {
       })
       .pipe(
         map(([{ password: pass, ...user }]) => {
-          console.log(pass, password);
           if (pass !== password) {
             throw new Error('Email or password is wrong.');
           }

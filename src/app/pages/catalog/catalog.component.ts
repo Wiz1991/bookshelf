@@ -54,7 +54,7 @@ export class CatalogComponent {
       if (result === undefined || result === 0) return;
 
       this.booksService
-        .addRating(bookId, '17', result)
+        .addRating(bookId, this.user.value!.id, result)
         .pipe(
           map(() => {
             this.books$ = this.booksService.getAll();
@@ -65,14 +65,16 @@ export class CatalogComponent {
   }
 
   getRateButtonText(ratings: Rating[]) {
-    const userRating = ratings.find((rating) => rating.userId === '17');
+    const userRating = ratings.find(
+      (rating) => rating.userId === this.user.value!.id
+    );
 
     return userRating ? `${userRating.value}★` : 'Rate';
   }
 
   isRatingDisabled(book: Book, orders: Order[]) {
     return (
-      book.ratings.some((rating) => (rating.userId = '17')) ||
+      book.ratings.some((rating) => (rating.userId = this.user.value!.id)) ||
       !orders.some(
         (order) => order.bookId === book.id && order.status === 'delivered'
       )
@@ -86,11 +88,11 @@ export class CatalogComponent {
         status: (['canceled', 'delivered', 'delivering'] as const)[
           Math.floor(Math.random() * 3)
         ] as any,
-        userId: '17',
+        userId: this.user.value!.id,
       })
       .pipe(
         map(() => {
-          this.orders$ = this.orderService.getOrders('17');
+          this.orders$ = this.orderService.getOrders(this.user.value!.id);
         })
       )
       .subscribe();

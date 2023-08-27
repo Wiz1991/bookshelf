@@ -6,4 +6,5 @@ export interface User {
   email: string;
   address: string;
   password: string;
+  favouriteGenre: string;
 }

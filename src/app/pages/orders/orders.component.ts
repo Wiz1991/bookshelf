@@ -74,7 +74,7 @@ export class OrdersComponent {
       if (result === undefined || result === 0) return;
 
       this.booksService
-        .addRating(bookId, '17', result)
+        .addRating(bookId, this.user.value!.id, result)
         .pipe(
           map(() => {
             this.refresh$.next(this.refresh$.value + 1);
@@ -85,12 +85,14 @@ export class OrdersComponent {
   }
   isRatingDisabled(book: Book & { order: Order }) {
     return (
-      book.ratings.some((rating) => (rating.userId = '17')) ||
+      book.ratings.some((rating) => rating.userId == this.user.value!.id) ||
       book.order.status !== 'delivered'
     );
   }
   getRateButtonText(ratings: Rating[]) {
-    const userRating = ratings.find((rating) => rating.userId === '17');
+    const userRating = ratings.find(
+      (rating) => rating.userId === this.user.value!.id
+    );
 
     return userRating ? `Your Rating: ${userRating.value}★` : 'Rate';
   }

@@ -190,40 +190,43 @@
       "email": "tfinlasonh@sogou.com",
       "address": "Room 259",
       "password": "gP8,En'bDF"
-    }
-  ],
-  "ratings": [
+    },
     {
-      "userId": "17",
-      "value": 3,
-      "bookId": "11",
-      "id": 4163
+      "email": "test@gmail.com",
+      "phone": "0832402234",
+      "password": "test",
+      "address": "Generala Veljkova",
+      "favouriteGenre": "",
+      "name": "teeest",
+      "surname": null,
+      "id": "dIh2-JC"
     }
   ],
+  "ratings": [],
   "orders": [
     {
+      "bookId": "11",
+      "status": "delivering",
+      "userId": "17",
+      "id": 1
+    },
+    {
       "bookId": "13",
-      "status": "canceled",
+      "status": "delivering",
       "userId": "17",
       "id": 2
+    },
+    {
+      "bookId": "14",
+      "status": "canceled",
+      "userId": "17",
+      "id": 3
     },
     {
       "bookId": "12",
       "status": "delivering",
       "userId": "17",
-      "id": 3
-    },
-    {
-      "bookId": "14",
-      "status": "delivering",
-      "userId": "17",
       "id": 4
-    },
-    {
-      "bookId": "16",
-      "status": "canceled",
-      "userId": "17",
-      "id": 5
     }
   ]
 }

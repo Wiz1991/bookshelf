@@ -27,6 +27,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSelectModule,
     BrowserAnimationsModule,
   ],
   providers: [BookService, OrderService, UserService],

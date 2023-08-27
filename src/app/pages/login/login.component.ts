@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.form.invalid) return;
     const payload = this.form.value;
-    console.log(payload);
 
     this.userService
       .login(payload.email!, payload.password!)
