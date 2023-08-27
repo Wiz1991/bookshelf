@@ -1,30 +1,35 @@
 import { HttpClient } from '@angular/common/http';
 import { Expansion } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
-  private currentUser: Omit<User, 'password'> | null = null;
+  private currentUser = new BehaviorSubject<Omit<User, 'password'> | null>(
+    null
+  );
 
   private readonly BASE_HREF = 'http://localhost:3000/users';
   constructor(private readonly httpClient: HttpClient) {}
 
   login(email: string, password: string) {
     return this.httpClient
-      .get<User>(`${this.BASE_HREF}`, {
+      .get<User[]>(`${this.BASE_HREF}`, {
         params: {
           email,
         },
       })
       .pipe(
-        map(({ password: pass, ...user }) => {
+        map(([{ password: pass, ...user }]) => {
+          console.log(pass, password);
           if (pass !== password) {
             throw new Error('Email or password is wrong.');
           }
 
-          this.currentUser = user;
+          this.currentUser.next(user);
 
           return user;
         })
@@ -34,7 +39,7 @@ export class UserService {
   signUp(user: Omit<User, 'id'>) {
     return this.httpClient.post<User>(`${this.BASE_HREF}`, user).pipe(
       map((user) => {
-        this.currentUser = user;
+        this.currentUser.next(user);
       })
     );
   }
@@ -44,6 +49,6 @@ export class UserService {
   }
 
   logout() {
-    this.currentUser = null;
+    this.currentUser.next(null);
   }
 }

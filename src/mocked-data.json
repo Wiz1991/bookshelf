@@ -192,13 +192,38 @@
       "password": "gP8,En'bDF"
     }
   ],
-  "ratings": [],
+  "ratings": [
+    {
+      "userId": "17",
+      "value": 3,
+      "bookId": "11",
+      "id": 4163
+    }
+  ],
   "orders": [
     {
-      "bookId": "20",
-      "status": "delivered",
+      "bookId": "13",
+      "status": "canceled",
       "userId": "17",
-      "id": 6
+      "id": 2
+    },
+    {
+      "bookId": "12",
+      "status": "delivering",
+      "userId": "17",
+      "id": 3
+    },
+    {
+      "bookId": "14",
+      "status": "delivering",
+      "userId": "17",
+      "id": 4
+    },
+    {
+      "bookId": "16",
+      "status": "canceled",
+      "userId": "17",
+      "id": 5
     }
   ]
 }

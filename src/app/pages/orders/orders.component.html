@@ -39,6 +39,7 @@
             <button
               mat-button
               class="remove"
+              *ngIf="book.order.status === 'delivered'"
               (click)="this.onRemoveOrder(book.order.id)"
             >
               Remove

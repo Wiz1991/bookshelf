@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, tap } from 'rxjs';
 import { BookService } from 'src/app/api/book.service';
 import { OrderService } from 'src/app/api/order.service';
+import { UserService } from 'src/app/api/user.service';
 import { RateComponent } from 'src/app/components/rate/rate.component';
 import { Book } from 'src/app/models/book.model';
 import { Order } from 'src/app/models/order.model';
@@ -15,14 +16,17 @@ import { Rating } from 'src/app/models/rating.model';
 })
 export class OrdersComponent {
   filters$ = new BehaviorSubject<Partial<Book>>({});
+  user = this.userService.getCurrentUser();
 
-  refresh$ = new BehaviorSubject('');
+  orders$ = this.user.pipe(
+    mergeMap((user) => {
+      if (!user) return [];
+      return this.orderService.getOrders(user.id);
+    })
+  );
+  refresh$ = new BehaviorSubject(0);
 
-  books$ = combineLatest([
-    this.orderService.getOrders('17'),
-    this.filters$,
-    this.refresh$,
-  ]).pipe(
+  books$ = combineLatest([this.orders$, this.filters$, this.refresh$]).pipe(
     mergeMap(([orders, filters]) => {
       return this.booksService.getAll(filters).pipe(
         map((books) => {
@@ -47,6 +51,7 @@ export class OrdersComponent {
 
   constructor(
     private readonly orderService: OrderService,
+    private readonly userService: UserService,
     private readonly booksService: BookService,
     private readonly dialog: MatDialog
   ) {}
@@ -72,7 +77,7 @@ export class OrdersComponent {
         .addRating(bookId, '17', result)
         .pipe(
           map(() => {
-            this.refresh$.next('1');
+            this.refresh$.next(this.refresh$.value + 1);
           })
         )
         .subscribe();
@@ -95,7 +100,8 @@ export class OrdersComponent {
       .remove(orderId)
       .pipe(
         tap(() => {
-          this.refresh$.next('2');
+          this.refresh$.next(this.refresh$.value + 1);
+          this.user.next(this.user.value);
         })
       )
       .subscribe();

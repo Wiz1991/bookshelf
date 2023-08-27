@@ -22,6 +22,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from 'src/app/api/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RateComponent } from './components/rate/rate.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,9 +35,14 @@ import { RateComponent } from './components/rate/rate.component';
     OrdersComponent,
     HeaderComponent,
     RateComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatDialogModule,
     MatButtonModule,
     AppRoutingModule,

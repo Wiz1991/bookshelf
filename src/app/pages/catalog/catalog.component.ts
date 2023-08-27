@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { map } from 'rxjs';
+import { combineLatest, map, mergeMap } from 'rxjs';
 import { BookService } from 'src/app/api/book.service';
 import { OrderService } from 'src/app/api/order.service';
 import { UserService } from 'src/app/api/user.service';
@@ -17,7 +17,13 @@ import { OrdersComponent } from 'src/app/pages/orders/orders.component';
 })
 export class CatalogComponent {
   books$ = this.booksService.getAll();
-  orders$ = this.orderService.getOrders('17');
+  user = this.userService.getCurrentUser();
+  orders$ = this.user.pipe(
+    mergeMap((user) => {
+      if (!user) return [];
+      return this.orderService.getOrders(user.id);
+    })
+  );
 
   constructor(
     private readonly booksService: BookService,

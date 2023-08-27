@@ -1,11 +1,12 @@
 <header class="navbar-container">
   <nav class="navbar">
-    <a class="brand" href="/">Bookstore</a>
+    <a class="brand" routerLink="/">Bookstore</a>
     <nav>
-      <a href="/orders">Orders</a>
+      <a routerLink="/orders" *ngIf="user.value != null">Orders</a>
+      <a routerLink="/login" *ngIf="user.value == null">Login</a>
     </nav>
     <div class="profile">
-      <span>Wiz1991</span>
+      <span routerLink="/profile">{{ user.value?.name }}</span>
     </div>
   </nav>
 </header>

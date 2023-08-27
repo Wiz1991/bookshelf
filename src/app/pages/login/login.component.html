@@ -1,0 +1,41 @@
+<main class="page-container">
+  <h1>Login</h1>
+  <form [formGroup]="form" class="form-container" (ngSubmit)="this.onSubmit()">
+    <div class="inputs">
+      <mat-form-field class="input-container">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="example@email.com"
+          required
+          type="email"
+          autocomplete="off"
+          formControlName="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="input-container">
+        <mat-label>Password</mat-label>
+        <input
+          size
+          matInput
+          placeholder="Enter your password"
+          type="password"
+          autocomplete="off"
+          required
+          formControlName="password"
+        />
+      </mat-form-field>
+    </div>
+    <div class="actions">
+      <a mat-button routerLink="/register" class="btn btn-link">Register</a>
+      <button
+        type="submit"
+        mat-button
+        style="background-color: var(--primary-color); color: white"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+</main>
