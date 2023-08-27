@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Give it a rating :)</h1>
+<div mat-dialog-content>
+  <div class="star-wrapper" (click)="this.onStarClick($event)">
+    <a
+      *ngFor="let star of [5, 4, 3, 2, 1]"
+      [attr.data-star]="star"
+      class="fas fa-star"
+      [ngClass]="[this.value === star ? 'active' : '', 's' + star]"
+    ></a>
+  </div>
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: end">
+  <button mat-button (click)="this.dialogRef.close()">Cancel</button>
+  <button mat-button [mat-dialog-close]="this.value" cdkFocusInitial>Ok</button>
+</div>

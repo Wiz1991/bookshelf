@@ -1,1 +1,51 @@
-<p>orders works!</p>
+<main class="page-container">
+  <div class="header">
+    <h1 class="page-title">Orders</h1>
+    <span class="total">Total: {{ total$ | async }}$</span>
+  </div>
+  <section class="orders">
+    <div class="filters-container"></div>
+    <div class="books-list">
+      <div class="card" *ngFor="let book of books$ | async">
+        <div class="book-header">
+          <div class="meta">
+            <span class="date">{{ book.datePublished }}</span>
+            <span class="pages">{{ book.pages }} Pages</span>
+          </div>
+          <h3 class="title">{{ book.title }}</h3>
+          <div class="info">
+            <span class="genre">Genre: {{ book.genre }}</span>
+            <span class="dot">&#x2022;</span>
+            <span class="publisher">Publisher: {{ book.publisher }}</span>
+            <span class="rating">{{ getAverageRating(book.ratings) }} ★</span>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="delivery">
+            <span class="price">${{ book.price }}</span>
+            <span>Status: {{ book.order.status }}</span>
+          </div>
+
+          <div class="actions">
+            <button
+              class="rate"
+              (click)="this.onRateClick(book.id)"
+              type="button"
+              [disabled]="isRatingDisabled(book)"
+            >
+              {{ getRateButtonText(book.ratings) }}
+            </button>
+
+            <button
+              mat-button
+              class="remove"
+              (click)="this.onRemoveOrder(book.order.id)"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

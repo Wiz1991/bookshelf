@@ -10,16 +10,34 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BookService } from 'src/app/api/book.service';
 import { OrderService } from 'src/app/api/order.service';
-import { UserService } from 'src/app/api/user.service';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
 
+import { MatButtonModule } from '@angular/material/button';
+
+import { UserService } from 'src/app/api/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RateComponent } from './components/rate/rate.component';
 @NgModule({
   declarations: [
     AppComponent,
     CatalogComponent,
     OrdersComponent,
     HeaderComponent,
+    RateComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    MatDialogModule,
+    MatButtonModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+  ],
   providers: [BookService, OrderService, UserService],
   bootstrap: [AppComponent],
 })

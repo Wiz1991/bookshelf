@@ -75,7 +75,11 @@
     transition: all 0.2s ease-in;
   }
 
-  .rate:hover {
+  .rate:disabled {
+    opacity: 0.8;
+  }
+
+  .rate:hover:not(:disabled) {
     border: 2px solid var(--primary-color);
   }
 
@@ -85,7 +89,11 @@
     color: white;
     border-radius: 0.2rem;
   }
-  .reserve:hover {
+  .reserve:disabled {
+    opacity: 0.8;
+  }
+
+  .reserve:hover:not(:disabled) {
     opacity: 0.8;
   }
 }

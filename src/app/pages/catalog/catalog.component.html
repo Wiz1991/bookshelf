@@ -1,9 +1,9 @@
 <main class="page-container">
   <h1 class="page-title">Catalog</h1>
-  <section class="catalog">
+  <section class="catalog" *ngIf="orders$ | async as orders">
     <div class="filters-container"></div>
     <div class="books-list">
-      <div class="card" *ngFor="let book of books$ | async">
+      <div class="card" *ngFor="let book of books$ | async; trackBy: identify">
         <div class="book-header">
           <div class="meta">
             <span class="date">{{ book.datePublished }}</span>
@@ -20,8 +20,22 @@
         <div class="footer">
           <span class="price">${{ book.price }}</span>
           <div class="actions">
-            <button class="rate" type="button">Rate</button>
-            <button class="reserve" type="button">Reserve</button>
+            <button
+              class="rate"
+              (click)="this.onRateClick(book.id)"
+              type="button"
+              [disabled]="isRatingDisabled(book, orders)"
+            >
+              {{ getRateButtonText(book.ratings) }}
+            </button>
+            <button
+              class="reserve"
+              type="button"
+              (click)="this.onReserve(book.id)"
+              [disabled]="this.hasReserved(orders, book)"
+            >
+              {{ this.hasReserved(orders, book) ? "Reserved" : "Reserve" }}
+            </button>
           </div>
         </div>
       </div>

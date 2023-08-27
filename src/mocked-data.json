@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "id": 11,
+      "id": "11",
       "title": "Father and Guns (De père en flic)",
       "publisher": "Ailane",
       "datePublished": "9/3/2022",
@@ -10,7 +10,7 @@
       "price": 49.99
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "The Pumaman",
       "publisher": "Jetpulse",
       "datePublished": "8/21/2023",
@@ -19,7 +19,7 @@
       "price": 49.99
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Little Big Man",
       "publisher": "Skidoo",
       "datePublished": "5/29/2023",
@@ -28,7 +28,7 @@
       "price": 49.99
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Passion Play",
       "publisher": "Zoovu",
       "datePublished": "2/8/2023",
@@ -37,7 +37,7 @@
       "price": 49.99
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "Three Men and a Little Lady",
       "publisher": "Tazz",
       "datePublished": "8/22/2023",
@@ -46,16 +46,16 @@
       "price": 49.99
     },
     {
-      "id": 16,
+      "id": "16",
       "title": "Tipping the Velvet",
       "publisher": "Flashdog",
       "datePublished": "12/23/2022",
       "genre": "Comedy",
       "pages": 16,
-      "price": 45.0
+      "price": 45
     },
     {
-      "id": 17,
+      "id": "17",
       "title": "Scream, Blacula, Scream!",
       "publisher": "Blogpad",
       "datePublished": "6/15/2023",
@@ -64,7 +64,7 @@
       "price": 49.99
     },
     {
-      "id": 18,
+      "id": "18",
       "title": "Convict 13",
       "publisher": "Photobug",
       "datePublished": "11/9/2022",
@@ -73,7 +73,7 @@
       "price": 49.99
     },
     {
-      "id": 19,
+      "id": "19",
       "title": "Last American Hero, The",
       "publisher": "Wikivu",
       "datePublished": "7/2/2023",
@@ -82,7 +82,7 @@
       "price": 49.99
     },
     {
-      "id": 20,
+      "id": "20",
       "title": "Swimming with Sharks",
       "publisher": "Vinder",
       "datePublished": "11/6/2022",
@@ -91,7 +91,7 @@
       "price": 49.99
     },
     {
-      "id": 21,
+      "id": "21",
       "title": "Half Life of Timofey Berezin, The (PU-239)",
       "publisher": "Tagtune",
       "datePublished": "9/5/2022",
@@ -100,7 +100,7 @@
       "price": 49.99
     },
     {
-      "id": 22,
+      "id": "22",
       "title": "Man's Favorite Sport?",
       "publisher": "Mybuzz",
       "datePublished": "5/8/2023",
@@ -109,7 +109,7 @@
       "price": 49.99
     },
     {
-      "id": 23,
+      "id": "23",
       "title": "Forever, Darling",
       "publisher": "BlogXS",
       "datePublished": "9/24/2022",
@@ -118,7 +118,7 @@
       "price": 49.99
     },
     {
-      "id": 24,
+      "id": "24",
       "title": "Forest Warrior",
       "publisher": "Browsecat",
       "datePublished": "9/23/2022",
@@ -127,7 +127,7 @@
       "price": 49.99
     },
     {
-      "id": 25,
+      "id": "25",
       "title": "Borat: Cultural Learnings of America for Make Benefit Glorious Nation of Kazakhstan",
       "publisher": "Skipfire",
       "datePublished": "4/7/2023",
@@ -136,7 +136,7 @@
       "price": 49.99
     },
     {
-      "id": 26,
+      "id": "26",
       "title": "Craig Ferguson: A Wee Bit o' Revolution",
       "publisher": "Centimia",
       "datePublished": "7/28/2023",
@@ -145,7 +145,7 @@
       "price": 49.99
     },
     {
-      "id": 27,
+      "id": "27",
       "title": "Running Scared",
       "publisher": "Twimm",
       "datePublished": "11/12/2022",
@@ -154,7 +154,7 @@
       "price": 49.99
     },
     {
-      "id": 28,
+      "id": "28",
       "title": "Folks!",
       "publisher": "Feedbug",
       "datePublished": "11/1/2022",
@@ -165,7 +165,7 @@
   ],
   "users": [
     {
-      "id": 16,
+      "id": "16",
       "name": "Leeland",
       "surname": "Spratt",
       "phone": "290-950-2799",
@@ -174,7 +174,7 @@
       "password": "pI6}&?~Gy'yy"
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Merrill",
       "surname": "Cookney",
       "phone": "498-607-0684",
@@ -183,7 +183,7 @@
       "password": "test"
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Tannie",
       "surname": "Finlason",
       "phone": "978-412-7735",
@@ -192,17 +192,13 @@
       "password": "gP8,En'bDF"
     }
   ],
-  "ratings": [
+  "ratings": [],
+  "orders": [
     {
-      "value": 3,
-      "userId": 17,
-      "bookId": 18
-    },
-    {
-      "value": 4,
-      "userId": 17,
-      "bookId": 19
+      "bookId": "20",
+      "status": "delivered",
+      "userId": "17",
+      "id": 6
     }
-  ],
-  "orders": []
+  ]
 }
