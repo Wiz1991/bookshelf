@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, combineLatest, map, mergeMap, tap } from 'rxjs';
 import { BookService } from 'src/app/api/book.service';
@@ -14,7 +14,7 @@ import { Rating } from 'src/app/models/rating.model';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent {
+export class OrdersComponent implements OnInit {
   filters$ = new BehaviorSubject<Partial<Book>>({});
   user = this.userService.getCurrentUser();
 
@@ -30,14 +30,26 @@ export class OrdersComponent {
     mergeMap(([orders, filters]) => {
       return this.booksService.getAll(filters).pipe(
         map((books) => {
-          return orders.reduce<(Book & { order: Order })[]>((prev, curr) => {
-            const book = {
-              order: curr,
-              ...books.find((b) => b.id === curr.bookId)!,
-            };
+          const bookIds = books.map((b) => b.id);
 
-            return [...prev, book];
-          }, []);
+          const availableOrders = orders.filter((o) =>
+            bookIds.includes(o.bookId)
+          );
+
+          return availableOrders.reduce<(Book & { order: Order })[]>(
+            (prev, curr) => {
+              console.log(books);
+              const book = {
+                order: curr,
+                ...books.find((b) => b.id === curr.bookId)!,
+              };
+
+              console.log(book);
+
+              return [...prev, book];
+            },
+            []
+          );
         })
       );
     })
@@ -56,8 +68,18 @@ export class OrdersComponent {
     private readonly dialog: MatDialog
   ) {}
 
+  ngOnInit(): void {}
+
+  onFilterChange(filters: any) {
+    this.filters$.next(filters);
+  }
+
+  identify(index: number, item: Book) {
+    return index + item.id;
+  }
+
   getAverageRating(ratings: Rating[]) {
-    if (!ratings.length) return 'N/A';
+    if (!ratings || !ratings.length) return 'N/A';
 
     const sum = ratings.reduce((prev, curr) => prev + curr.value, 0);
 
@@ -85,12 +107,12 @@ export class OrdersComponent {
   }
   isRatingDisabled(book: Book & { order: Order }) {
     return (
-      book.ratings.some((rating) => rating.userId == this.user.value!.id) ||
+      book.ratings?.some((rating) => rating.userId == this.user.value!.id) ||
       book.order.status !== 'delivered'
     );
   }
   getRateButtonText(ratings: Rating[]) {
-    const userRating = ratings.find(
+    const userRating = ratings?.find(
       (rating) => rating.userId === this.user.value!.id
     );
 

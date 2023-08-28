@@ -4,9 +4,11 @@
     <span class="total">Total: {{ total$ | async }}$</span>
   </div>
   <section class="orders">
-    <div class="filters-container"></div>
+    <div class="filters-container">
+      <app-filter (onFiltersChange)="this.onFilterChange($event)"></app-filter>
+    </div>
     <div class="books-list">
-      <div class="card" *ngFor="let book of books$ | async">
+      <div class="card" *ngFor="let book of books$ | async; trackBy: identify">
         <div class="book-header">
           <div class="meta">
             <span class="date">{{ book.datePublished }}</span>

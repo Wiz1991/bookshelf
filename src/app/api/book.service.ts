@@ -8,11 +8,29 @@ export class BookService {
   private readonly BASE_URL = 'http://localhost:3000/books';
   constructor(private readonly httpService: HttpClient) {}
 
-  getAll(filters?: Partial<Omit<Book, 'id'>>) {
+  parseFilters(filters: {
+    publisher?: string;
+    title?: string;
+    price?: number;
+    pages?: number;
+    genre?: string;
+  }) {
+    return Object.entries(filters)
+      .filter(([_, value]) => !!value)
+      .reduce<{ [key: string]: any }>((prev, [key, value]) => {
+        if (typeof value === 'string') prev[`${key}_like`] = value;
+        else prev[`${key}_gte`] = value.toString();
+
+        return prev;
+      }, {});
+  }
+
+  getAll(filters?: any) {
+    const params = this.parseFilters(filters);
     return this.httpService.get<Book[]>(
       `${this.BASE_URL}?_embed=ratings&limit=50`,
       {
-        params: filters as any,
+        params,
       }
     );
   }

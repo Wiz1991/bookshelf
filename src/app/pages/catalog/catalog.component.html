@@ -1,7 +1,9 @@
 <main class="page-container">
   <h1 class="page-title">Catalog</h1>
   <section class="catalog">
-    <div class="filters-container"></div>
+    <div class="filters-container">
+      <app-filter (onFiltersChange)="this.onFilterChange($event)"></app-filter>
+    </div>
     <div class="books-list">
       <div class="card" *ngFor="let book of books$ | async; trackBy: identify">
         <div class="book-header">

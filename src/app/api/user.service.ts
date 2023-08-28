@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Expansion } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 
 @Injectable({
@@ -41,6 +41,16 @@ export class UserService {
         this.currentUser.next(user);
       })
     );
+  }
+
+  updateProfile(user: User) {
+    return this.httpClient
+      .patch<User>(`${this.BASE_HREF}/${user.id}`, user)
+      .pipe(
+        tap((u) => {
+          this.currentUser.next(u);
+        })
+      );
   }
 
   getCurrentUser() {

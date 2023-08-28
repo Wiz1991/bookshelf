@@ -10,6 +10,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BookService } from 'src/app/api/book.service';
 import { OrderService } from 'src/app/api/order.service';
+import { MatIconModule } from '@angular/material/icon';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -27,7 +28,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { FilterComponent } from './components/filter/filter.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import {MatSelectModule} from '@angular/material/select';
     RateComponent,
     LoginComponent,
     RegisterComponent,
+    FilterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import {MatSelectModule} from '@angular/material/select';
     AppRoutingModule,
     HttpClientModule,
     MatSelectModule,
+    MatIconModule,
     BrowserAnimationsModule,
   ],
   providers: [BookService, OrderService, UserService],

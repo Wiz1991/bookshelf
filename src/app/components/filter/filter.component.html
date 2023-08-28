@@ -1,0 +1,44 @@
+<form [formGroup]="form" class="filters">
+  <mat-form-field class="input-container">
+    <mat-label>Title</mat-label>
+    <input matInput type="text" formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Genre</mat-label>
+    <mat-select formControlName="genre">
+      <mat-option
+        *ngFor="
+          let genre of ['Action', 'Adventure', 'Romance', 'Horror', 'Thriller']
+        "
+        [value]="genre"
+      >
+        {{ genre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-container">
+    <mat-label>Publisher</mat-label>
+    <input matInput type="text" formControlName="publisher" />
+  </mat-form-field>
+
+  <mat-form-field class="input-container">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" formControlName="price" />
+  </mat-form-field>
+
+  <mat-form-field class="input-container">
+    <mat-label>Pages</mat-label>
+    <input matInput type="number" min="0" formControlName="pages" />
+  </mat-form-field>
+
+  <button
+    mat-mini-fab
+    color="primary"
+    (click)="this.onClearFilters()"
+    aria-label="Delete"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</form>

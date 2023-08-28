@@ -165,20 +165,12 @@
   ],
   "users": [
     {
-      "id": "16",
-      "name": "Leeland",
-      "surname": "Spratt",
-      "phone": "290-950-2799",
-      "email": "lsprattf@people.com.cn",
-      "address": "Suite 45",
-      "password": "pI6}&?~Gy'yy"
-    },
-    {
       "id": "17",
-      "name": "Merrill",
+      "name": "Testin",
       "surname": "Cookney",
       "phone": "498-607-0684",
       "email": "test@test.com",
+      "favouriteGenre": "Action",
       "address": "5th Floor",
       "password": "test"
     },
@@ -188,18 +180,9 @@
       "surname": "Finlason",
       "phone": "978-412-7735",
       "email": "tfinlasonh@sogou.com",
+      "favouriteGenre": "Adventure",
       "address": "Room 259",
       "password": "gP8,En'bDF"
-    },
-    {
-      "email": "test@gmail.com",
-      "phone": "0832402234",
-      "password": "test",
-      "address": "Generala Veljkova",
-      "favouriteGenre": "",
-      "name": "teeest",
-      "surname": null,
-      "id": "dIh2-JC"
     }
   ],
   "ratings": [],
@@ -227,6 +210,24 @@
       "status": "delivering",
       "userId": "17",
       "id": 4
+    },
+    {
+      "bookId": "15",
+      "status": "delivering",
+      "userId": "17",
+      "id": 5
+    },
+    {
+      "bookId": "16",
+      "status": "canceled",
+      "userId": "17",
+      "id": 6
+    },
+    {
+      "bookId": "17",
+      "status": "delivered",
+      "userId": "17",
+      "id": 7
     }
   ]
 }

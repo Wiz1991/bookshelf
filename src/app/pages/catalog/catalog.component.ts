@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { combineLatest, map, mergeMap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, mergeMap, startWith } from 'rxjs';
 import { BookService } from 'src/app/api/book.service';
 import { OrderService } from 'src/app/api/order.service';
 import { UserService } from 'src/app/api/user.service';
@@ -16,7 +16,14 @@ import { OrdersComponent } from 'src/app/pages/orders/orders.component';
   styleUrls: ['./catalog.component.scss'],
 })
 export class CatalogComponent {
-  books$ = this.booksService.getAll();
+  filters = new BehaviorSubject({});
+
+  books$ = this.filters.pipe(
+    mergeMap((f) => {
+      return this.booksService.getAll(f);
+    })
+  );
+
   user = this.userService.getCurrentUser();
   orders$ = this.user.pipe(
     mergeMap((user) => {
@@ -31,6 +38,10 @@ export class CatalogComponent {
     private readonly userService: UserService,
     private readonly orderService: OrderService
   ) {}
+
+  onFilterChange(value: any) {
+    this.filters.next(value);
+  }
 
   getAverageRating(ratings: Rating[]) {
     if (!ratings.length) return 'N/A';
@@ -74,7 +85,7 @@ export class CatalogComponent {
 
   isRatingDisabled(book: Book, orders: Order[]) {
     return (
-      book.ratings.some((rating) => (rating.userId = this.user.value!.id)) ||
+      book.ratings.some((rating) => rating.userId == this.user.value!.id) ||
       !orders.some(
         (order) => order.bookId === book.id && order.status === 'delivered'
       )
